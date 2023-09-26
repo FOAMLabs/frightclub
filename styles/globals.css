@@ -49,7 +49,7 @@ body {
   background: radial-gradient(circle at var(--x) var(--y), 
     rgba(224, 225, 220, 0.3000) 5%, 
     rgba(225, 225, 225, 0.20) 10%, 
-    rgba(51, 30, 0, 0.90) 20%, 
+    rgba(30, 30, 0, 0.98) 20%, 
     rgba(4, 22, 15, 0.98) 400%, 
     rgba(4, 22, 15, .97) 100%, 
     transparent 5%, 
