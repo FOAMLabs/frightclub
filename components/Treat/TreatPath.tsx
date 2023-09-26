@@ -40,6 +40,8 @@ const TreatPath: React.FC = () => {
     };
   }, [flashlightSize, clickCount]);
 
+  
+
   return (
     <div>
       <div className="treat-background">
