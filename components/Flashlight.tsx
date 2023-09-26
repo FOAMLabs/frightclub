@@ -1,15 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import Image from 'next/image';
 
 const Flashlight: React.FC = () => {
   const [flashlightSize, setFlashlightSize] = useState(75); // initial size
   const [clickCount, setClickCount] = useState(0);
-  const overlayRef = useRef<HTMLElement | null>(null);
+  const overlayRef = useRef<HTMLDivElement | null>(null);
 
 
 
   useEffect(() => {
     const moveFlashlight = (event: MouseEvent) => {
-      const overlay = overlayRef.current as HTMLElement;
+      const overlay = overlayRef.current;
       if (overlay) {
         overlay.style.setProperty('--x', `${event.pageX}px`);
         overlay.style.setProperty('--y', `${event.pageY}px`);
@@ -41,8 +43,10 @@ const Flashlight: React.FC = () => {
 
   return (
     <div>
-      <div className="background-image"></div>
+      <div className="background-image"><ConnectButton /></div>
+      
       <div className="overlay" ref={overlayRef}></div>
+      <Image src="/logo.svg" alt="Logo" width={500} height={200} className="logo" />
     </div>
   );
 };
