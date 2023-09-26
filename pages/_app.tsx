@@ -1,15 +1,15 @@
-import '../styles/globals.css';
-import '@rainbow-me/rainbowkit/styles.css';
+import "../styles/globals.css";
+import "@rainbow-me/rainbowkit/styles.css";
 
-import { 
-  getDefaultWallets, 
-  RainbowKitProvider, 
-  darkTheme, 
-  Theme
- } from '@rainbow-me/rainbowkit';
+import {
+  getDefaultWallets,
+  RainbowKitProvider,
+  darkTheme,
+  Theme,
+} from "@rainbow-me/rainbowkit";
 
-import type { AppProps } from 'next/app';
-import { configureChains, createConfig, WagmiConfig } from 'wagmi';
+import type { AppProps } from "next/app";
+import { configureChains, createConfig, WagmiConfig } from "wagmi";
 
 import {
   arbitrum,
@@ -19,18 +19,16 @@ import {
   polygon,
   base,
   zora,
-} from 'wagmi/chains';
+} from "wagmi/chains";
 
-import { publicProvider } from 'wagmi/providers/public';
-import merge from 'lodash.merge';
-
+import { publicProvider } from "wagmi/providers/public";
+import merge from "lodash.merge";
 
 const myTheme = merge(darkTheme(), {
   colors: {
-    accentColor: '#8c0017',
+    accentColor: "#8c0017",
   },
 } as Theme);
-
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
@@ -40,14 +38,14 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
     arbitrum,
     base,
     zora,
-    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [goerli] : []),
+    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" ? [goerli] : []),
   ],
   [publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
-  appName: 'RainbowKit App',
-  projectId: 'YOUR_PROJECT_ID',
+  appName: "RainbowKit App",
+  projectId: "YOUR_PROJECT_ID",
   chains,
 });
 

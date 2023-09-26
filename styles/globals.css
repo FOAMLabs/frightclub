@@ -13,7 +13,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('/haunted_house.png') no-repeat center center;
+  background: url("/haunted_house.png") no-repeat center center;
   background-size: cover;
   z-index: 1;
 }
@@ -30,36 +30,40 @@ body {
 }
 
 .trick-background {
-  background: url('/graveyard.png') no-repeat center center;
+  background: url("/graveyard.png") no-repeat center center;
   background-size: cover;
 }
 
 .treat-background {
-  background: url('/background.png') no-repeat center center;
+  background: url("/background.png") no-repeat center center;
   background-size: cover;
 }
 
 .overlay {
-
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at var(--x) var(--y), 
-    rgba(224, 225, 220, 0.3000) 5%, 
-    rgba(225, 225, 225, 0.20) 10%, 
-    rgba(30, 30, 0, 0.98) 20%, 
-    rgba(4, 22, 15, 0.98) 400%, 
-    rgba(4, 22, 15, .97) 100%, 
-    transparent 5%, 
-    rgba(3, 2, 15, 0.98) 100%) no-repeat;
+  background: radial-gradient(
+      circle at var(--x) var(--y),
+      rgba(224, 225, 220, 0.3) 5%,
+      rgba(225, 225, 225, 0.2) 10%,
+      rgba(30, 30, 0, 0.98) 20%,
+      rgba(4, 22, 15, 0.98) 400%,
+      rgba(4, 22, 15, 0.97) 100%,
+      transparent 5%,
+      rgba(3, 2, 15, 0.98) 100%
+    )
+    no-repeat;
   background-size: 100% 100%;
   z-index: 2;
   pointer-events: none;
 }
 
-.logo, .menu-items, .menu {
+.logo,
+.menu-items,
+.menu {
   position: fixed;
   z-index: 3;
 }
