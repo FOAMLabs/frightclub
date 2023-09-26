@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import Flashlight from "../components/Flashlight";
+import TrickPath from "../components/Trick/TrickPath";
 
-const Home: NextPage = () => {
+const Trick: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
@@ -16,7 +16,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Flashlight />
+        <TrickPath />
       </main>
 
       <footer className={styles.footer}>
@@ -26,4 +26,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Trick;

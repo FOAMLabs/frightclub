@@ -13,54 +13,82 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('/background.png') no-repeat center center;
+  background: url('/haunted_house.png') no-repeat center center;
   background-size: cover;
   z-index: 1;
 }
 
-
-.overlay {
+.trick-background,
+.treat-background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at var(--x) var(--y), transparent 2%, transparent var(--size), rgba(0, 0, 0, 0.96) calc(var(--size) + 1px), rgba(0, 0, 15, 0.95) 100%) no-repeat;
+  background-size: cover;
+  z-index: 1;
+}
+
+.trick-background {
+  background: url('/graveyard.png') no-repeat center center;
+  background-size: cover;
+}
+
+.treat-background {
+  background: url('/background.png') no-repeat center center;
+  background-size: cover;
+}
+
+.overlay {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at var(--x) var(--y), 
+    rgba(224, 225, 220, 0.3000) 5%, 
+    rgba(225, 225, 225, 0.20) 10%, 
+    rgba(51, 30, 0, 0.90) 20%, 
+    rgba(4, 22, 15, 0.98) 400%, 
+    rgba(4, 22, 15, .97) 100%, 
+    transparent 5%, 
+    rgba(3, 2, 15, 0.98) 100%) no-repeat;
   background-size: 100% 100%;
   z-index: 2;
   pointer-events: none;
 }
 
+.logo, .menu-items, .menu {
+  position: fixed;
+  z-index: 3;
+}
 
 .logo {
-  position: fixed;
-  top: 10px;  /* or whatever distance you prefer from the top */
+  top: 10px;
   left: 50%;
-  transform: translateX(-50%);  /* center it horizontally */
-  width: 50%;  /* 50% of the viewport width, adjust as needed */
-  max-width: 400px;  /* maximum width, adjust as needed */
-  min-width: 150px;  /* minimum width, adjust as needed */
-  z-index: 3;  /* ensure it's above everything else */
+  transform: translateX(-50%);
+  width: 50%;
+  max-width: 400px;
+  min-width: 150px;
 }
 
-.menu-items, .menu {
-  position: fixed;
-  top: 100px; /* the same distance from the top as the logo */
-  width: 25%; /* half the size of the logo */
-  max-width: 200px; /* half of the logo's maximum width */
-  min-width: 75px; /* half of the logo's minimum width */
-  z-index: 3; /* same z-index as the logo */
-  transform: translateY(-50%); /* vertically center relative to its top position */
+.menu-items,
+.menu {
+  top: 100px;
+  width: 25%;
+  max-width: 200px;
+  min-width: 75px;
+  transform: translateY(-50%);
 }
 
-.menu-items { /* trick.svg */
-  left: calc(25% - 150px - 10px); /* position it to the left of the center, considering half of the logo's width and a small gap of 10px */
+.menu-items {
+  left: calc(25% - 150px - 10px);
 }
 
-.menu { /* treat.svg */
-  right: calc(25% - 150px - 10px); /* position it to the right of the center, considering half of the logo's width and a small gap of 10px */
+.menu {
+  right: calc(25% - 150px - 10px);
 }
-
 
 a {
   color: inherit;
@@ -72,20 +100,21 @@ a {
 }
 
 @media (max-width: 800px) {
-  .menu-items, .menu {
-    top: calc(10px + 50% + 50px); /* This positions it underneath the logo, taking the logo's top position and half its height (50%) into account, and adding some padding (50px) */
-    width: 40%; /* Adjust as needed for better sizing on mobile screens */
-    max-width: none; /* Removes the maximum width constraint */
-    min-width: none; /* Removes the minimum width constraint */
-    left: 50%; /* Center it horizontally */
-    transform: translateX(-50%); /* Adjust horizontal centering */
+  .menu-items,
+  .menu {
+    top: calc(10px + 50% + 50px);
+    width: 40%;
+    max-width: none;
+    min-width: none;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  .menu-items { /* trick.svg */
-    top: calc(10px + 50% + 50px + 100px); /* This will place it just below the logo with padding */
+  .menu-items {
+    top: calc(10px + 50% + 50px + 100px);
   }
 
-  .menu { /* treat.svg */
-    top: calc(10px + 50% + 50px + 200px); /* This will place it below the menu-items with some padding */
+  .menu {
+    top: calc(10px + 50% + 50px + 200px);
   }
 }

@@ -3,7 +3,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const Flashlight: React.FC = () => {
+const TreatPath: React.FC = () => {
   const [flashlightSize, setFlashlightSize] = useState(75); // initial size
   const [clickCount, setClickCount] = useState(0);
   const overlayRef = useRef<HTMLDivElement | null>(null);
@@ -20,18 +20,18 @@ const Flashlight: React.FC = () => {
       }
     };
 
-const handleFlashlightClick = (event: MouseEvent) => {
-  if (!(event.target as HTMLElement).closest('a, button')) {
-    // Not a clickable item
-    if (clickCount === 3) {
-      setFlashlightSize(75); // Reset size after 4th click
-      setClickCount(0);     // Reset click count
-    } else {
-      setFlashlightSize((prevSize) => prevSize * 1.50); // Increase size by 50%
-      setClickCount((prevCount) => prevCount + 1);      // Increase click count
-    }
-  }
-};
+    const handleFlashlightClick = (event: MouseEvent) => {
+      if (!(event.target as HTMLElement).closest('a, button')) {
+        // Not a clickable item
+        if (clickCount === 3) {
+          setFlashlightSize(75); // Reset size after 4th click
+          setClickCount(0);     // Reset click count
+        } else {
+          setFlashlightSize((prevSize) => prevSize * 1.50); // Increase size by 15%
+          setClickCount((prevCount) => prevCount + 1);      // Increase click count
+        }
+      }
+    };
 
     window.addEventListener('mousemove', moveFlashlight);
     window.addEventListener('click', handleFlashlightClick);
@@ -43,23 +43,22 @@ const handleFlashlightClick = (event: MouseEvent) => {
   }, [flashlightSize, clickCount]);
 
   return (
-    <div>
-      <div className="background-image"><ConnectButton /></div>
+      <div>
+      <div className="treat-background"><ConnectButton /></div>
       
       <div className="overlay" ref={overlayRef}></div>
+      
+      <Link href="/">
       <Image src="/logo.svg" alt="Logo" width={500} height={200} className="logo" />
-      <Link href="/Trick">
-        
-          <Image src="/trick.svg" alt="Trick" width={250} height={100} className="menu-items" />
-    
+         
       </Link>
       <Link href="/Treat">
         
-          <Image src="/treat.svg" alt="Treat" width={250} height={100} className="menu" />
+    
     
       </Link>
     </div>
   );
 };
 
-export default Flashlight;
+export default TreatPath;
