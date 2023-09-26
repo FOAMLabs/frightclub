@@ -47,6 +47,8 @@ const Flashlight: React.FC = () => {
       
       <div className="overlay" ref={overlayRef}></div>
       <Image src="/logo.svg" alt="Logo" width={500} height={200} className="logo" />
+      <Image src="/trick.svg" alt="Logo" width={250} height={100} className="menu-items" />
+      <Image src="/treat.svg" alt="Logo" width={250} height={100} className="menu" />
     </div>
   );
 };
