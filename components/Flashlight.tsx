@@ -35,20 +35,19 @@ const Flashlight: React.FC = () => {
   });
 
   useEffect(() => {
-    // Implement device orientation here for mobile
-    // This is a mock example, you will need to adjust for your needs
     const handleOrientation = (event: DeviceOrientationEvent) => {
       const overlay = overlayRef.current;
       if (overlay) {
         const gamma = event.gamma; // [-90, 90]
         const beta = event.beta;   // [-180, 180]
 
-        // Convert gamma and beta into x, y (You may need to adjust these)
-        const x = (gamma + 90) * (window.innerWidth / 180);
-        const y = (beta + 180) * (window.innerHeight / 360);
+        if (gamma !== null && beta !== null) {
+          const x = (gamma + 90) * (window.innerWidth / 180);
+          const y = (beta + 180) * (window.innerHeight / 360);
 
-        overlay.style.setProperty("--x", `${x}px`);
-        overlay.style.setProperty("--y", `${y}px`);
+          overlay.style.setProperty("--x", `${x}px`);
+          overlay.style.setProperty("--y", `${y}px`);
+        }
       }
     };
 
