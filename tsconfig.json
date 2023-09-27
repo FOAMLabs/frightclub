@@ -16,5 +16,6 @@
     "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "message": "File '/Users/saulloveman/Desktop/frightclub/components/Treat/Treat.tsx' not found.\n  The file is in the program because:\n    Matched by include pattern '**/*.tsx' in '/Users/saulloveman/Desktop/frightclub/tsconfig.json'"
 }
