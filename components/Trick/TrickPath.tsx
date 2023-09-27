@@ -1,47 +1,65 @@
-import React, { useEffect, useState, useRef } from "react";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import Image from "next/image";
-import Link from "next/link";
+import React, { useState, useRef, useEffect } from 'react';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useGesture } from 'react-use-gesture';
 
 const TrickPath: React.FC = () => {
-  const [flashlightSize, setFlashlightSize] = useState(75); // initial size
-  const [clickCount, setClickCount] = useState(0);
+  const [flashlightSize, setFlashlightSize] = useState<number>(75);
+  const [clickCount, setClickCount] = useState<number>(0);
   const overlayRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    const moveFlashlight = (event: MouseEvent) => {
+  const bind = useGesture({
+    onMove: ({ xy: [x, y] }) => {
       const overlay = overlayRef.current;
       if (overlay) {
-        overlay.style.setProperty("--x", `${event.pageX}px`);
-        overlay.style.setProperty("--y", `${event.pageY}px`);
+        overlay.style.setProperty("--x", `${x}px`);
+        overlay.style.setProperty("--y", `${y}px`);
         overlay.style.setProperty("--size", `${flashlightSize}px`);
       }
-    };
+    },
+    onClick: (event) => {
+      if (event.event.target instanceof HTMLElement) {
+        const targetElement = event.event.target as HTMLElement;
+        if (!targetElement.closest("a, button")) {
+          if (clickCount === 3) {
+            setFlashlightSize(75);
+            setClickCount(0);
+          } else {
+            setFlashlightSize((prevSize) => prevSize * 1.5);
+            setClickCount((prevCount) => prevCount + 1);
+          }
+        }
+      }
+    },
+  });
 
-    const handleFlashlightClick = (event: MouseEvent) => {
-      if (!(event.target as HTMLElement).closest("a, button")) {
-        // Not a clickable item
-        if (clickCount === 3) {
-          setFlashlightSize(75); // Reset size after 4th click
-          setClickCount(0); // Reset click count
-        } else {
-          setFlashlightSize((prevSize) => prevSize * 1.5); // Increase size by 15%
-          setClickCount((prevCount) => prevCount + 1); // Increase click count
+  useEffect(() => {
+    const handleOrientation = (event: DeviceOrientationEvent) => {
+      const overlay = overlayRef.current;
+      if (overlay) {
+        const gamma = event.gamma; // [-90, 90]
+        const beta = event.beta;   // [-180, 180]
+
+        if (gamma !== null && beta !== null) {
+          const x = (gamma + 90) * (window.innerWidth / 180);
+          const y = (beta + 180) * (window.innerHeight / 360);
+
+          overlay.style.setProperty("--x", `${x}px`);
+          overlay.style.setProperty("--y", `${y}px`);
         }
       }
     };
 
-    window.addEventListener("mousemove", moveFlashlight);
-    window.addEventListener("click", handleFlashlightClick);
-
+    window.addEventListener('deviceorientation', handleOrientation);
+    
     return () => {
-      window.removeEventListener("mousemove", moveFlashlight);
-      window.removeEventListener("click", handleFlashlightClick);
+      window.removeEventListener('deviceorientation', handleOrientation);
     };
-  }, [flashlightSize, clickCount]);
+  }, []);
 
   return (
-    <div>
+    <div {...bind()}>
       <div className="trick-background">
         <ConnectButton />
       </div>
