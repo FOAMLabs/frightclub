@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import Flashlight from "../components/Flashlight";
+import FrightClubMain from "../components/Home/FrightClubMain";
 
 const Home: NextPage = () => {
   return (
@@ -16,7 +16,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Flashlight />
+        <FrightClubMain />
       </main>
 
       <footer className={styles.footer}>

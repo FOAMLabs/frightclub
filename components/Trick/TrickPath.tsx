@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useGesture } from 'react-use-gesture';
+import React, { useState, useRef, useEffect } from "react";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import Image from "next/image";
+import Link from "next/link";
+import { useGesture } from "react-use-gesture";
 
 const TrickPath: React.FC = () => {
   const [flashlightSize, setFlashlightSize] = useState<number>(75);
@@ -39,7 +39,7 @@ const TrickPath: React.FC = () => {
       const overlay = overlayRef.current;
       if (overlay) {
         const gamma = event.gamma; // [-90, 90]
-        const beta = event.beta;   // [-180, 180]
+        const beta = event.beta; // [-180, 180]
 
         if (gamma !== null && beta !== null) {
           const x = (gamma + 90) * (window.innerWidth / 180);
@@ -51,10 +51,10 @@ const TrickPath: React.FC = () => {
       }
     };
 
-    window.addEventListener('deviceorientation', handleOrientation);
-    
+    window.addEventListener("deviceorientation", handleOrientation);
+
     return () => {
-      window.removeEventListener('deviceorientation', handleOrientation);
+      window.removeEventListener("deviceorientation", handleOrientation);
     };
   }, []);
 
