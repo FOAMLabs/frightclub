@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useGesture } from 'react-use-gesture';
+import React, { useState, useRef, useEffect } from "react";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import Image from "next/image";
+import Link from "next/link";
+import { useGesture } from "react-use-gesture";
 
-const Flashlight: React.FC = () => {
+const FrightClubMain: React.FC = () => {
   const [flashlightSize, setFlashlightSize] = useState<number>(75);
   const [clickCount, setClickCount] = useState<number>(0);
   const overlayRef = useRef<HTMLDivElement | null>(null);
@@ -39,7 +39,7 @@ const Flashlight: React.FC = () => {
       const overlay = overlayRef.current;
       if (overlay) {
         const gamma = event.gamma; // [-90, 90]
-        const beta = event.beta;   // [-180, 180]
+        const beta = event.beta; // [-180, 180]
 
         if (gamma !== null && beta !== null) {
           const x = (gamma + 90) * (window.innerWidth / 180);
@@ -51,26 +51,46 @@ const Flashlight: React.FC = () => {
       }
     };
 
-    window.addEventListener('deviceorientation', handleOrientation);
-    
+    window.addEventListener("deviceorientation", handleOrientation);
+
     return () => {
-      window.removeEventListener('deviceorientation', handleOrientation);
+      window.removeEventListener("deviceorientation", handleOrientation);
     };
   }, []);
 
   return (
     <div {...bind()}>
-      <div className="background-image"><ConnectButton /></div>
+      <div className="background-image">
+        <ConnectButton />
+      </div>
       <div className="overlay" ref={overlayRef}></div>
-      <Image src="/logo.svg" alt="Logo" width={500} height={200} className="logo" />
+      <Image
+        src="/logo.svg"
+        alt="Logo"
+        width={500}
+        height={200}
+        className="logo"
+      />
       <Link href="/Trick">
-        <Image src="/trick.svg" alt="Trick" width={250} height={100} className="menu-items" />
+        <Image
+          src="/trick.svg"
+          alt="Trick"
+          width={250}
+          height={100}
+          className="menu-items"
+        />
       </Link>
       <Link href="/Treat">
-        <Image src="/treat.svg" alt="Treat" width={250} height={100} className="menu" />
+        <Image
+          src="/treat.svg"
+          alt="Treat"
+          width={250}
+          height={100}
+          className="menu"
+        />
       </Link>
     </div>
   );
 };
 
-export default Flashlight;
+export default FrightClubMain;
