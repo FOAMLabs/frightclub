@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.13",
     "@rainbow-me/rainbowkit": "^1.0.11",
     "@types/styled-components": "^5.1.28",
     "gyronorm": "^2.0.6",

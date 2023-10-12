@@ -3,6 +3,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import Link from "next/link";
 import { useGesture } from "react-use-gesture";
+import VideoComponent from "./VideoComponent/VideoComponent";
 
 const FrightClubMain: React.FC = () => {
   const [flashlightSize, setFlashlightSize] = useState<number>(75);
@@ -61,7 +62,9 @@ const FrightClubMain: React.FC = () => {
   return (
     <div {...bind()}>
       <div className="background-image">
-        <ConnectButton />
+      <div>
+      <VideoComponent />
+    </div>
       </div>
       <div className="overlay" ref={overlayRef}></div>
       <Image
