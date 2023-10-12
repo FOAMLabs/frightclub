@@ -1,32 +1,32 @@
 // components/VideoComponent.tsx
 import * as React from 'react';
 import Container from '@mui/material/Container';
-import styles from './VideoComponent.module.css';  // Import the CSS module
+import styles from './VideoComponent.module.css';
 
 interface VideoFrameProps {
   videoSrc: string;
 }
 
 const VideoFrame: React.FC<VideoFrameProps> = ({ videoSrc }) => {
-    const videoRef = React.useRef<HTMLVideoElement>(null);  // Create a ref to access the video element
+    const videoRef = React.useRef<HTMLVideoElement>(null);
   
     const handleMouseEnter = () => {
       if (videoRef.current) {
-        videoRef.current.pause();  // Pause video on mouse enter
+        videoRef.current.play();
       }
     };
   
     const handleMouseLeave = () => {
       if (videoRef.current) {
-        videoRef.current.play();  // Play video on mouse leave
+        videoRef.current.pause();
       }
     };
   
     return (
       <div
-        className={styles.frame}
-        onMouseEnter={handleMouseEnter}  // Pause video on mouse enter
-        onMouseLeave={handleMouseLeave}  // Play video on mouse leave
+      className={styles.frame}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <video ref={videoRef} autoPlay muted loop className={styles.video}>
           <source src={videoSrc} type="video/mp4" />
@@ -36,18 +36,18 @@ const VideoFrame: React.FC<VideoFrameProps> = ({ videoSrc }) => {
     );
   };
 
-
-const VideoComponent: React.FC = () => {
-  // Assuming all videos are named VIDEO_1.mp4, VIDEO_2.mp4, etc., and are located in the public folder
-  const videoSources = [1, 2, 3, 4, 5].map(num => `/VIDEO_${num}.mp4`);
-
-  return (
-    <Container maxWidth="md" className={styles.hallway}>
-      {videoSources.map((src, index) => (
-        <VideoFrame key={index} videoSrc={src} />
-      ))}
-    </Container>
-  );
-};
-
-export default VideoComponent;
+  const VideoComponent: React.FC = () => {
+    const videoSources = [1, 2, 3, 4, 5].map(num => `/VIDEO_${num}.mp4`);
+  
+    return (
+      <Container maxWidth="md" className={styles.container}>
+        <div className={styles.hallway}>
+          {videoSources.map((src, index) => (
+            <VideoFrame key={index} videoSrc={src} />
+          ))}
+        </div>
+      </Container>
+    );
+  };
+  
+  export default VideoComponent;
